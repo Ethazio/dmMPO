@@ -1,22 +1,26 @@
 import java.util.ArrayList;
 
-public class Sandwich <P,S,A> {
+public class Sandwich <P,S,I> {
 	private String nom;
 	private P pain;
 	private S sauce;
-	private ArrayList<A> ingredients;
+	private ArrayList<Ingredient> ingredients = new ArrayList<>();
 	
-	public Sandwich(String nom) {
+	public Sandwich(String nom, P pain, S sauce) {
 		this.nom = nom;
-	}
-	
-	public void composer(P pain, S sauce, ArrayList<A> ingredients) {
 		this.pain = pain;
 		this.sauce = sauce;
-		this.ingredients = ingredients;
 	}
 	
-	public void deplacerIngredient(A ingredient, Sandwich s) {
+	public void composer(Ingredient i) throws alimentNonCompatibleException {
+		try {
+			this.ingredients.add(i);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deplacerIngredient(I ingredient, Sandwich s) {
 		// TODO
 	}
 	
@@ -37,8 +41,10 @@ public class Sandwich <P,S,A> {
 	
 	public String toString() {
 		String res = "Sandwich '" + this.nom + "' :\n  - " + this.pain + "\n  - " + this.sauce;
-		for(A ing: this.ingredients) {
-			res += "\n  - " + ing;
+		if(this.ingredients != null) {
+			for(Ingredient ing: this.ingredients) {
+				res += "\n  - " + ing;
+			}
 		}
 		return res;
 	}
