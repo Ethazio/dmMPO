@@ -18,8 +18,12 @@ public class Aliment implements IAliment {
 	}
 
 	@Override
-	public void setKilocaloriesPour100g(float kc) {
-		this.kilocaloriesPour100g = kc;
+	public void setKilocaloriesPour100g(float q) throws nbKcalInvalideException {
+		if(q > 0 && q < 1000) {
+			this.kilocaloriesPour100g = q;
+		} else {
+			throw new nbKcalInvalideException();
+		}
 	}
 
 	public String toString() {

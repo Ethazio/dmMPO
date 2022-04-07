@@ -7,27 +7,93 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		IAlimentVegetarien tomate = new AlimentVegetarien("tomate");
-		Ingredient<IAlimentVegetarien> trancheTomate = new Ingredient<>();
-		trancheTomate.setAliment(tomate);
-		trancheTomate.setQuantiteEnGramme(100.0f);
-		
-		IAliment bacon = new Aliment("bacon");
-		Ingredient<IAliment> trancheBacon = new Ingredient<>();
-		trancheBacon.setAliment(bacon);
-		trancheBacon.setQuantiteEnGramme(80.0f);
-		
-		IPain pain = new Pain("complet");
-		ISauce sauce = new Sauce("ketchiup");
-		
-		SandwichVegetarien<IPain, ISauce, IAlimentVegetarien> bizarre = new SandwichVegetarien<>("bizarre", pain, sauce);
+		IAlimentVegan tomate = new AlimentVegan("tomate");
 		try {
-			bizarre.composer(trancheBacon);
+			tomate.setKilocaloriesPour100g(21.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		Ingredient<IAlimentVegan> trancheTomate = new Ingredient<>();
+		trancheTomate.setAliment(tomate);
+		trancheTomate.setQuantiteEnGramme(50.0f);
+		
+		IAlimentVegan salade = new AlimentVegan("salade");
+		try {
+			salade.setKilocaloriesPour100g(13.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		Ingredient<IAlimentVegan> feuilleSalade = new Ingredient<>();
+		feuilleSalade.setAliment(salade);
+		feuilleSalade.setQuantiteEnGramme(15.0f);
+		
+//		IAliment bacon = new Aliment("bacon");
+//		Ingredient<IAliment> trancheBacon = new Ingredient<>();
+//		trancheBacon.setAliment(bacon);
+//		trancheBacon.setQuantiteEnGramme(80.0f);
+		
+		IPain painComplet = new Pain("complet");
+		try {
+			painComplet.setKilocaloriesPour100g(200.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IPain painItalien = new Pain("italien");
+		try {
+			painItalien.setKilocaloriesPour100g(200.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		ISauce ketchup = new Sauce("ketchup");
+		try {
+			ketchup.setKilocaloriesPour100g(100.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		ISauce mayo = new Sauce("mayo");
+		try {
+			mayo.setKilocaloriesPour100g(100.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		
+		Ingredient<IPain> tranchePainComplet = new Ingredient<>();
+		tranchePainComplet.setAliment(painComplet);
+		tranchePainComplet.setQuantiteEnGramme(300.0f);
+				
+		Ingredient<ISauce> doseketchup = new Ingredient<>();
+		doseketchup.setAliment(ketchup);
+		doseketchup.setQuantiteEnGramme(30.0f);
+		
+		Ingredient<IPain> tranchePainItalien = new Ingredient<>();
+		tranchePainItalien.setAliment(painItalien);
+		tranchePainItalien.setQuantiteEnGramme(300.0f);
+		
+		Ingredient<ISauce> dosemayo = new Ingredient<>();
+		dosemayo.setAliment(mayo);
+		dosemayo.setQuantiteEnGramme(30.0f);
+		
+		
+		
+		
+		SandwichVegan<IPain, ISauce, IAlimentVegan> bizarre = new SandwichVegan<>("bizarre", tranchePainComplet, doseketchup);
+		Sandwich<IPain, ISauce, IAliment> chelou = new Sandwich<>("chelou", tranchePainItalien, dosemayo);
+
+		try {
+			bizarre.composer(feuilleSalade);
+			bizarre.composer(trancheTomate);
 		} catch (alimentNonCompatibleException e) {
 			System.out.println("tu ne peux pas faire cela");
 		}
 		
 		System.out.println(bizarre);
+		System.out.println(chelou);
+		
+		System.out.println(bizarre.ingredientCommun(chelou));
 		
 //		ArrayList<Sandwich> sandwichs = new ArrayList<>();
 //		

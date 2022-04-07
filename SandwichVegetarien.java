@@ -1,7 +1,7 @@
 
-public class SandwichVegetarien<P,S,I> extends Sandwich<P,S,I> {
+public class SandwichVegetarien<P extends IAliment, S extends IAliment, I extends IAliment> extends Sandwich<P, S, I> {
 	
-	public SandwichVegetarien(String nom, P pain, S sauce) {
+	public SandwichVegetarien(String nom, Ingredient<P> pain, Ingredient<S> sauce) {
 		super(nom, pain, sauce);
 	}
 

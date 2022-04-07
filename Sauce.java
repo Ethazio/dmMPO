@@ -3,7 +3,6 @@ public class Sauce implements ISauce {
 	private String nom;
 	private Piquant niveauPiquant;
 	private float kilocaloriesPour100g; // Dépend de la sauce choisie
-	private static float quantiteEnGramme = 11.0f; // Même dose pour toutes les sauces
 	
 	public Sauce(String nom) {
 		this.nom = nom;
@@ -34,12 +33,8 @@ public class Sauce implements ISauce {
 		this.niveauPiquant = p;
 	}
 	
-	public float getQuantiteEnGramme() {
-		return Sauce.quantiteEnGramme;
-	}
-	
 	public String toString() {
-		return "Sauce '" + nom() + "' (" + Sauce.quantiteEnGramme + "g)";
+		return "Sauce '" + nom() + "'";
 	}
 
 }
