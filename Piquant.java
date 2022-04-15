@@ -1,4 +1,4 @@
 
 public enum Piquant {
-	DOUX, FORT, TRES_FORT;
+	TRES_DOUX, DOUX, FORT, TRES_FORT;
 }
