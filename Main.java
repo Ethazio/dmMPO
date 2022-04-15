@@ -6,35 +6,18 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		IAlimentVegan tomate = new AlimentVegan("tomate");
+	
+		// CREATION DES PAINS
+		IPain painBlanc = new Pain("blanc");
 		try {
-			tomate.setKilocaloriesPour100g(21.0f);
+			painBlanc.setKilocaloriesPour100g(216.0f);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("frerot t'abuses");
 		}
-		Ingredient<IAlimentVegan> trancheTomate = new Ingredient<>();
-		trancheTomate.setAliment(tomate);
-		trancheTomate.setQuantiteEnGramme(50.0f);
-		
-		IAlimentVegan salade = new AlimentVegan("salade");
-		try {
-			salade.setKilocaloriesPour100g(13.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
-		Ingredient<IAlimentVegan> feuilleSalade = new Ingredient<>();
-		feuilleSalade.setAliment(salade);
-		feuilleSalade.setQuantiteEnGramme(15.0f);
-		
-//		IAliment bacon = new Aliment("bacon");
-//		Ingredient<IAliment> trancheBacon = new Ingredient<>();
-//		trancheBacon.setAliment(bacon);
-//		trancheBacon.setQuantiteEnGramme(80.0f);
 		
 		IPain painComplet = new Pain("complet");
 		try {
-			painComplet.setKilocaloriesPour100g(200.0f);
+			painComplet.setKilocaloriesPour100g(189.0f);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("frerot t'abuses");
 		}
@@ -46,254 +29,386 @@ public class Main {
 			System.out.println("frerot t'abuses");
 		}
 		
-		ISauce ketchup = new Sauce("ketchup");
+		
+		// CREATION DES SAUCES
+		ISauce sauceKetchup = new Sauce("ketchup");
 		try {
-			ketchup.setKilocaloriesPour100g(100.0f);
+			sauceKetchup.setKilocaloriesPour100g(100.0f);
+			sauceKetchup.setNiveauPiquant(Piquant.TRES_DOUX);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("frerot t'abuses");
 		}
 		
-		ISauce mayo = new Sauce("mayo");
+		ISauce sauceMayo = new Sauce("mayo");
 		try {
-			mayo.setKilocaloriesPour100g(100.0f);
+			sauceMayo.setKilocaloriesPour100g(100.0f);
+			sauceMayo.setNiveauPiquant(Piquant.TRES_DOUX);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		ISauce sauceMoutarde = new Sauce("moutarde");
+		try {
+			sauceMoutarde.setKilocaloriesPour100g(100.0f);
+			sauceMoutarde.setNiveauPiquant(Piquant.DOUX);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("frerot t'abuses");
 		}
 		
 		
-		Ingredient<IPain> tranchePainComplet = new Ingredient<>();
-		tranchePainComplet.setAliment(painComplet);
-		tranchePainComplet.setQuantiteEnGramme(300.0f);
-				
-		Ingredient<ISauce> doseketchup = new Ingredient<>();
-		doseketchup.setAliment(ketchup);
-		doseketchup.setQuantiteEnGramme(30.0f);
-		
-		Ingredient<IPain> tranchePainItalien = new Ingredient<>();
-		tranchePainItalien.setAliment(painItalien);
-		tranchePainItalien.setQuantiteEnGramme(300.0f);
-		
-		Ingredient<ISauce> dosemayo = new Ingredient<>();
-		dosemayo.setAliment(mayo);
-		dosemayo.setQuantiteEnGramme(30.0f);
-		
-		
-		
-		
-		SandwichVegan<IPain, ISauce, IAlimentVegan> bizarre = new SandwichVegan<>("bizarre", tranchePainComplet, doseketchup);
-		Sandwich<IPain, ISauce, IAliment> chelou = new Sandwich<>("chelou", tranchePainItalien, dosemayo);
-
+		// CREATION DES INGREDIENTS
+		IAlimentVegan tomate = new AlimentVegan("tomate");
 		try {
-			bizarre.composer(feuilleSalade);
-			bizarre.composer(trancheTomate);
-		} catch (alimentNonCompatibleException e) {
-			System.out.println("tu ne peux pas faire cela");
+			tomate.setKilocaloriesPour100g(21.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
 		}
 		
-		System.out.println(bizarre);
-		System.out.println(chelou);
+		IAlimentVegan salade = new AlimentVegan("salade");
+		try {
+			salade.setKilocaloriesPour100g(13.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
 		
-		System.out.println(bizarre.ingredientCommun(chelou));
+		IAliment bacon = new Aliment("bacon");
+		try {
+			bacon.setKilocaloriesPour100g(541.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
 		
-//		ArrayList<Sandwich> sandwichs = new ArrayList<>();
-//		
-//		System.out.println("-----------------------");
-//		System.out.println("Bienvenue chez Subway !");
-//		System.out.println("-----------------------");
-//		System.out.println("Que voulez-vous faire ?");
-//		System.out.println("[1] : Créer un sandwich");
-//		System.out.println("[2] : Voir vos sandwichs");
-//		System.out.println("[3] : Manger un sandwich");
-//		Scanner scan = new Scanner(System.in);
-//		String choix = scan.next();
-//		switch(choix) {
-//			case "1":
-//				System.out.println("-- Création de votre sandwich --");
-//				
-//				// NOM DU SANDWICH
-//				String nom;
-//				System.out.println("Entrez le nom de votre nouveau sandwich (pas d'espaces) :");
-//				nom = scan.next();
-//				
-//				// REGIME
-//				String typeRegime;
-//				do {
-//					System.out.println("Suivez-vous un régime particulier ?");
-//					System.out.println("[1] : Non");
-//					System.out.println("[2] : Oui, végétarien");
-//					System.out.println("[3] : Oui, végan");
-//					typeRegime = scan.next();
-//				} while(!typeRegime.equals("1") && !typeRegime.equals("2") && !typeRegime.equals("3"));
-//				String regime = "";
-//				switch(typeRegime) {
-//					case "1":
-//						regime = "non";
-//						break;
-//					case "2":
-//						regime = "végétarien";
-//						break;
-//					case "3":
-//						regime = "végan";
-//						break;
-//				}
-//				
-//				// PAIN
-//				String typePain;
-//				do {
-//					System.out.println("Quel pain désirez-vous ?");
-//					System.out.println("[1] : Normal");
-//					System.out.println("[2] : Sésames");
-//					System.out.println("[3] : Multi-céréales");
-//					typePain = scan.next();
-//				} while(!typePain.equals("1") && !typePain.equals("2") && !typePain.equals("3"));
-//				IPain pain = null;
-//				switch(typePain) {
-//					case "1":
-//						pain = new Pain("Normal");
-//						pain.setKilocaloriesPour100g(249.0f);
-//						break;
-//					case "2":
-//						pain = new Pain("Sésames");
-//						pain.setKilocaloriesPour100g(289.0f);
-//						break;
-//					case "3":
-//						pain = new Pain("Multi-céréales");
-//						pain.setKilocaloriesPour100g(294.0f);
-//						break;
-//				}
-//				
-//				// SAUCE
-//				String typeSauce;
-//				do {
-//					System.out.println("Quelle sauce désirez-vous ?");
-//					System.out.println("[1] : Ketchup");
-//					System.out.println("[2] : Mayonaise");
-//					System.out.println("[3] : Moutarde");
-//					typeSauce = scan.next();
-//				} while(!typeSauce.equals("1") && !typeSauce.equals("2") && !typeSauce.equals("3"));
-//				ISauce sauce = null;
-//				switch(typeSauce) {
-//					case "1":
-//						sauce = new Sauce("Ketchup");
-//						sauce.setKilocaloriesPour100g(112.0f);
-//						sauce.setNiveauPiquant(Piquant.DOUX);
-//						break;
-//					case "2":
-//						sauce = new Sauce("Mayonaise");
-//						sauce.setKilocaloriesPour100g(687.0f);
-//						sauce.setNiveauPiquant(Piquant.DOUX);
-//						break;
-//					case "3":
-//						sauce = new Sauce("Moutarde");
-//						sauce.setKilocaloriesPour100g(155.0f);
-//						sauce.setNiveauPiquant(Piquant.FORT);
-//						break;
-//				}
-//				
-//				// INGREDIENTS
-//				ArrayList<Ingredient> ingredients = new ArrayList<>();
-//				String typeIngr;
-//				do {
-//					System.out.println("Quel ingrédient désirez-vous ?");
-//					System.out.println("[1] : Tomate");
-//					System.out.println("[2] : Salade");
-//					System.out.println("[3] : Jambon");
-//					System.out.println("[4] : Beurre");
-//					System.out.println("[5] : Oeuf");
-//					System.out.println("[6] : Oignon");
-//					System.out.println("[7] : Ce sera tout !");
-//					typeIngr = scan.next();
-//					Ingredient ingr = null;
-//					switch(typeIngr) {
-//						case "1":
-//							ingr = new Ingredient<IAlimentVegan>();
-//							IAlimentVegan tomate = new AlimentVegan("Tomate");
-//							tomate.setKilocaloriesPour100g(21.0f);
-//							ingr.setAliment(tomate);
-//							ingr.setQuantiteEnGramme(12.0f);
-//							break;
-//						case "2":
-//							ingr = new Ingredient<IAlimentVegan>();
-//							IAlimentVegan salade = new AlimentVegan("Salade");
-//							salade.setKilocaloriesPour100g(13.0f);
-//							ingr.setAliment(salade);
-//							ingr.setQuantiteEnGramme(4.0f);
-//							break;
-//						case "3":
-//							ingr = new Ingredient<IAlimentVegan>();
-//							IAliment jambon = new Aliment("Jambon");
-//							jambon.setKilocaloriesPour100g(134.0f);
-//							ingr.setAliment(jambon);
-//							ingr.setQuantiteEnGramme(50.0f);
-//							break;
-//						case "4":
-//							ingr = new Ingredient<IAlimentVegan>();
-//							IAlimentVegan beurre = new AlimentVegan("Beurre");
-//							beurre.setKilocaloriesPour100g(760.0f);
-//							ingr.setAliment(beurre);
-//							ingr.setQuantiteEnGramme(12.5f);
-//							break;
-//						case "5":
-//							ingr = new Ingredient<IAlimentVegan>();
-//							IAlimentVegan oeuf = new AlimentVegan("Oeuf");
-//							oeuf.setKilocaloriesPour100g(73.0f);
-//							ingr.setAliment(oeuf);
-//							ingr.setQuantiteEnGramme(60.0f);
-//							break;
-//						case "6":
-//							ingr = new Ingredient<IAlimentVegan>();
-//							IAlimentVegan oignon = new AlimentVegan("Oignon");
-//							oignon.setKilocaloriesPour100g(43.0f);
-//							ingr.setAliment(oignon);
-//							ingr.setQuantiteEnGramme(12.0f);
-//							break;
-//					}
-//					if(ingr != null) {
-//						ingredients.add(ingr);
-//					}
-//				} while(!typeIngr.equals("7"));
-//				
-//				// CREATION SANDWICH
-//				Sandwich s;
-//				switch(regime) {
-//					case "non":
-//						s = new Sandwich<IPain, ISauce, IAliment>(nom, pain, sauce);
-//						break;
-//					case "végétarien":
-//						s = new Sandwich<IPain, ISauce, IAlimentVegetarien>(nom, pain, sauce);
-//						break;
-//					case "végan":
-//						s = new Sandwich<IPain, ISauce, IAlimentVegan>(nom, pain, sauce);
-//						break;
-//					default:
-//						s = new Sandwich<IPain, ISauce, IAliment>(nom, pain, sauce);
-//						break;
-//				}
-//				s.composer(ingredients);
-//				System.out.println("Récapitulatif de votre sandwich :");
-//				System.out.println(s);
-//				System.out.println("C'est bon pour vous ?");
-//				System.out.println("[1] Oui");
-//				System.out.println("[2] Non");
-//				String ok = scan.next();
-//				if(ok.equals("1")) {
-//					System.out.println("Ok, je vous l'amène tout de suite.");
-//					sandwichs.add(s);
-//				} else {
-//					System.out.println("Ah mince, désolé !");
-//				}
-//				break;
-//			case "2":
-//				System.out.println("Voici vos sandwich :");
-//				break;
-//			case "3":
-//				System.out.println("Entrez le nom du sandwich que vous voulez manger :");
-//				break;
-//			default:
-//				System.out.println("Ce choix n'existe pas !");
-//		}
-//		System.out.println("Merci, au revoir !");
-//		scan.close();
+		IAlimentVegan concombre = new AlimentVegan("concombre");
+		try {
+			concombre.setKilocaloriesPour100g(10.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAlimentVegetarien oeuf = new AlimentVegetarien("oeuf");
+		try {
+			oeuf.setKilocaloriesPour100g(73.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAlimentVegan oignon = new AlimentVegan("oignon");
+		try {
+			oignon.setKilocaloriesPour100g(43.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAliment steakBoeuf = new Aliment("steak boeuf");
+		try {
+			steakBoeuf.setKilocaloriesPour100g(195.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAlimentVegan steakSoja = new AlimentVegan("steak soja");
+		try {
+			steakSoja.setKilocaloriesPour100g(177.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAliment poulet = new Aliment("poulet");
+		try {
+			poulet.setKilocaloriesPour100g(102.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAlimentVegan avocat = new AlimentVegan("avocat");
+		try {
+			avocat.setKilocaloriesPour100g(360.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAlimentVegan tofu = new AlimentVegan("tofu");
+		try {
+			tofu.setKilocaloriesPour100g(76.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAliment thon = new Aliment("thon");
+		try {
+			thon.setKilocaloriesPour100g(117.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAlimentVegetarien cheddar = new AlimentVegetarien("cheddar");
+		try {
+			cheddar.setKilocaloriesPour100g(402.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		IAlimentVegetarien feta = new AlimentVegetarien("feta");
+		try {
+			feta.setKilocaloriesPour100g(264.0f);
+		} catch (nbKcalInvalideException e1) {
+			System.out.println("frerot t'abuses");
+		}
+		
+		
+		// DEBUT DU PROGRAMME
+		ArrayList<Sandwich> sandwichs = new ArrayList<>();
+		
+		System.out.println("-----------------------------");
+		System.out.println("Bienvenue chez PXXLSandwich !");
+		System.out.println("-----------------------------");
+		Scanner scan = new Scanner(System.in);
+		String choix = "";
+		do {
+			System.out.println("\nQue voulez-vous faire ?");
+			System.out.println("[1] : Créer un sandwich");
+			System.out.println("[2] : Voir vos sandwichs");
+			System.out.println("[3] : Manger un sandwich");
+			System.out.println("[4] : Quitter le restaurant");
+			choix = scan.next();
+			switch(choix) {
+				case "1":
+					System.out.println("-- Création de votre sandwich --");
+					
+					// NOM DU SANDWICH
+					String nom;
+					System.out.println("Entrez le nom de votre nouveau sandwich (pas d'espaces) :");
+					nom = scan.next();
+					
+					// REGIME
+					String typeRegime;
+					do {
+						System.out.println("Suivez-vous un régime particulier ?");
+						System.out.println("[1] : Non");
+						System.out.println("[2] : Oui, végétarien");
+						System.out.println("[3] : Oui, végan");
+						typeRegime = scan.next();
+					} while(!typeRegime.equals("1") && !typeRegime.equals("2") && !typeRegime.equals("3"));
+					String regime = "";
+					switch(typeRegime) {
+						case "1":
+							regime = "non";
+							break;
+						case "2":
+							regime = "végétarien";
+							break;
+						case "3":
+							regime = "végan";
+							break;
+					}
+					
+					// PAIN
+					String typePain;
+					do {
+						System.out.println("Quel pain désirez-vous ?");
+						System.out.println("[1] : Blanc");
+						System.out.println("[2] : Complet");
+						System.out.println("[3] : Italien");
+						typePain = scan.next();
+					} while(!typePain.equals("1") && !typePain.equals("2") && !typePain.equals("3"));
+					Ingredient<IPain> tranchePain = new Ingredient<>();
+					switch(typePain) {
+						case "1":
+							tranchePain.setAliment(painBlanc);
+							tranchePain.setQuantiteEnGramme(78.0f);
+							break;
+						case "2":
+							tranchePain.setAliment(painComplet);
+							tranchePain.setQuantiteEnGramme(82.0f);
+							break;
+						case "3":
+							tranchePain.setAliment(painItalien);
+							tranchePain.setQuantiteEnGramme(71.0f);
+							break;
+					}
+					
+					// SAUCE
+					String typeSauce;
+					do {
+						System.out.println("Quelle sauce désirez-vous ?");
+						System.out.println("[1] : Ketchup");
+						System.out.println("[2] : Mayonaise");
+						System.out.println("[3] : Moutarde");
+						typeSauce = scan.next();
+					} while(!typeSauce.equals("1") && !typeSauce.equals("2") && !typeSauce.equals("3"));
+					Ingredient<ISauce> doseSauce = new Ingredient<>();
+					switch(typeSauce) {
+						case "1":
+							doseSauce.setAliment(sauceKetchup);
+							doseSauce.setQuantiteEnGramme(30.0f);
+							break;
+						case "2":
+							doseSauce.setAliment(sauceMayo);
+							doseSauce.setQuantiteEnGramme(30.0f);
+							break;
+						case "3":
+							doseSauce.setAliment(sauceMoutarde);
+							doseSauce.setQuantiteEnGramme(30.0f);
+							break;
+					}
+					
+					Sandwich s;
+					switch(regime) {
+						case "non":
+							s = new Sandwich<IPain, ISauce, IAliment>(nom, tranchePain, doseSauce);
+							break;
+						case "végétarien":
+							s = new SandwichVegetarien<IPain, ISauce, IAlimentVegetarien>(nom, tranchePain, doseSauce);
+							break;
+						case "végan":
+							s = new SandwichVegan<IPain, ISauce, IAlimentVegan>(nom, tranchePain, doseSauce);
+							break;
+						default:
+							s = new Sandwich<IPain, ISauce, IAliment>(nom, tranchePain, doseSauce);
+							break;
+					}
+					
+					// INGREDIENTS
+					
+					String nomIngr;
+					System.out.println("Tapez le nom de l'ingrédient que vous désirez (ou 'ok' si terminé) :");
+					System.out.println("- SteakBoeuf");
+					System.out.println("- Bacon");
+					System.out.println("- Poulet");
+					System.out.println("- Thon");
+					System.out.println("- Oeuf");
+					System.out.println("- Tofu");
+					System.out.println("- SteakSoja");
+					System.out.println("- Tomate");
+					System.out.println("- Salade");
+					System.out.println("- Concombre");
+					System.out.println("- Avocat");
+					System.out.println("- Oignon");
+					System.out.println("- Cheddar");
+					System.out.println("- Feta");
+					do {
+						nomIngr = scan.next().toLowerCase();
+						Ingredient ingr = null;
+						switch(nomIngr) {
+							case "steakboeuf":
+								ingr = new Ingredient<IAliment>();
+								ingr.setAliment(steakBoeuf);
+								ingr.setQuantiteEnGramme(200.0f);
+								break;
+							case "bacon":
+								ingr = new Ingredient<IAliment>();
+								ingr.setAliment(bacon);
+								ingr.setQuantiteEnGramme(18.0f);
+								break;
+							case "poulet":
+								ingr = new Ingredient<IAliment>();
+								ingr.setAliment(poulet);
+								ingr.setQuantiteEnGramme(210.0f);
+								break;
+							case "thon":
+								ingr = new Ingredient<IAliment>();
+								ingr.setAliment(thon);
+								ingr.setQuantiteEnGramme(150.0f);
+								break;
+							case "oeuf":
+								ingr = new Ingredient<IAlimentVegetarien>();
+								ingr.setAliment(oeuf);
+								ingr.setQuantiteEnGramme(70.0f);
+								break;
+							case "tofu":
+								ingr = new Ingredient<IAlimentVegan>();
+								ingr.setAliment(tofu);
+								ingr.setQuantiteEnGramme(100.0f);
+								break;
+							case "steaksoja":
+								ingr = new Ingredient<IAlimentVegan>();
+								ingr.setAliment(steakSoja);
+								ingr.setQuantiteEnGramme(180.0f);
+								break;
+							case "tomate":
+								ingr = new Ingredient<IAlimentVegan>();
+								ingr.setAliment(tomate);
+								ingr.setQuantiteEnGramme(34.0f);
+								break;
+							case "salade":
+								ingr = new Ingredient<IAlimentVegan>();
+								ingr.setAliment(salade);
+								ingr.setQuantiteEnGramme(21.0f);
+								break;
+							case "concombre":
+								ingr = new Ingredient<IAlimentVegan>();
+								ingr.setAliment(concombre);
+								ingr.setQuantiteEnGramme(17.0f);
+								break;
+							case "avocat":
+								ingr = new Ingredient<IAlimentVegan>();
+								ingr.setAliment(avocat);
+								ingr.setQuantiteEnGramme(35.0f);
+								break;
+							case "oignon":
+								ingr = new Ingredient<IAlimentVegan>();
+								ingr.setAliment(oignon);
+								ingr.setQuantiteEnGramme(7.0f);
+								break;
+							case "cheddar":
+								ingr = new Ingredient<IAlimentVegetarien>();
+								ingr.setAliment(cheddar);
+								ingr.setQuantiteEnGramme(14.0f);
+								break;
+							case "feta":
+								ingr = new Ingredient<IAlimentVegetarien>();
+								ingr.setAliment(feta);
+								ingr.setQuantiteEnGramme(14.0f);
+								break;		
+							default:
+								System.out.println("Cet ingrédient n'existe pas !");
+						}
+						if(ingr != null) {
+							try {
+								s.composer(ingr);
+								System.out.println("Ingrédient ajouté !");
+							} catch (alimentNonCompatibleException e) {
+								System.out.println("Cet ingrédient est incompatible avec votre régime alimentaire !");
+							}
+						}
+					} while(!nomIngr.equals("ok"));
+					
+					// CREATION SANDWICH
+					
+					System.out.println("Récapitulatif de votre sandwich :");
+					System.out.println(s);
+					System.out.println("C'est bon pour vous ?");
+					System.out.println("[1] Oui");
+					System.out.println("[2] Non");
+					String ok = scan.next();
+					if(ok.equals("1")) {
+						System.out.println("Ok, je vous l'amène tout de suite.");
+						sandwichs.add(s);
+					} else {
+						System.out.println("Ah mince, désolé !");
+					}
+					break;
+				case "2":
+					if(sandwichs.isEmpty()) {
+						System.out.println("Vous n'avez pas de sandwich. Une petite faim ?");
+					} else {
+						System.out.println("Voici vos sandwich :");
+						for(Sandwich sand: sandwichs) {
+							System.out.println(sand);
+						}
+					}
+					break;
+				case "3":
+					System.out.println("Entrez le nom du sandwich que vous voulez manger :");
+					
+					break;
+				case "4":
+					System.out.println("Merci, au revoir !");
+					break;
+				default:
+					System.out.println("Ce choix n'existe pas !");
+			}
+		} while(!choix.equals("4"));
+		scan.close();
 	}
-
 }
