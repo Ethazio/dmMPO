@@ -20,6 +20,10 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 	public Ingredient<S> getSauce() {
 		return this.sauce;
 	}
+	
+	public String getNom() {
+		return this.nom;
+	}
 
 	public ArrayList<Ingredient> getIngredients() {
 		return this.ingredients;
@@ -29,7 +33,7 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 		this.ingredients.add(i);
 	}
 	
-	public void deplacerIngredient(I ingredient, Sandwich s) {
+	public void deplacerIngredient(Ingredient i, Sandwich s) {
 		// TODO
 	}
 	
