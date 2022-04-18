@@ -169,16 +169,28 @@ public class Main {
 			System.out.println("[1] : Créer un sandwich");
 			System.out.println("[2] : Voir vos sandwichs");
 			System.out.println("[3] : Manger un sandwich");
-			System.out.println("[4] : Quitter le restaurant");
+			System.out.println("[4] : Savoir si ingrédient en commun entre A et B");
+			System.out.println("[5] : Déplacer un aliment de A vers B");
+			System.out.println("[6] : Quitter le restaurant");
 			choix = scan.next();
 			switch(choix) {
 				case "1":
 					System.out.println("-- Création de votre sandwich --");
 					
 					// NOM DU SANDWICH
-					String nom;
-					System.out.println("Entrez le nom de votre nouveau sandwich (pas d'espaces) :");
-					nom = scan.next();
+					String nom = "";
+					boolean nomOK = false;
+					while(!nomOK) {
+						nomOK = true;
+						System.out.println("Entrez le nom de votre nouveau sandwich (pas d'espaces) :");
+						nom = scan.next();
+						for(Sandwich s: sandwichs) {
+							if(nom.equals(s.getNom())) {
+								System.out.println("Ce nom est déjà utilisé !");
+								nomOK = false;
+							}
+						}
+					}
 					
 					// REGIME
 					String typeRegime;
@@ -269,7 +281,6 @@ public class Main {
 					}
 					
 					// INGREDIENTS
-					
 					String nomIngr;
 					System.out.println("Tapez le nom de l'ingrédient que vous désirez (ou 'ok' si terminé) :");
 					System.out.println("- SteakBoeuf");
@@ -374,8 +385,7 @@ public class Main {
 					} while(!nomIngr.equals("ok"));
 					
 					// CREATION SANDWICH
-					
-					System.out.println("Récapitulatif de votre sandwich :");
+					System.out.println("Récapitulatif de votre commande :");
 					System.out.println(s);
 					System.out.println("C'est bon pour vous ?");
 					System.out.println("[1] Oui");
@@ -395,14 +405,44 @@ public class Main {
 						System.out.println("Voici vos sandwich :");
 						for(Sandwich sand: sandwichs) {
 							System.out.println(sand);
+							System.out.println("  > Ingrédient le plus calorique : " + sand.getIngredientPlusCaloriquePour100g());
 						}
 					}
 					break;
 				case "3":
-					System.out.println("Entrez le nom du sandwich que vous voulez manger :");
-					
+					System.out.println("Entrez l'index du sandwich que vous voulez manger :");
+					int index = scan.nextInt();
+					if(index >= sandwichs.size()) {
+						System.out.println("Index invalide !");
+					} else {
+						sandwichs.remove(index);
+						System.out.println("* miam *\nAppétissant !");
+					}
 					break;
 				case "4":
+					System.out.println("Entrez l'index du sandwich A :");
+					int indexA = scan.nextInt();
+					if(indexA >= sandwichs.size()) {
+						System.out.println("Index invalide !");
+						//break;
+					}
+					System.out.println("Entrez l'index du sandwich B :");
+					int indexB = scan.nextInt();
+					if(indexB >= sandwichs.size()) {
+						System.out.println("Index invalide !");
+						//break;
+					}
+					if(sandwichs.get(indexA).ingredientCommun(sandwichs.get(indexB))) {
+						System.out.println("Les sandwichs A et B ont au moins 1 ingrédient en commun");
+					} else {
+						System.out.println("Les sandwichs A et B n'ont aucun ingrédient en commun");
+					}
+					break;
+				case "5":
+					System.out.println("Entrez l'index du sandwich à enlever l'ingrédient :");
+					// TODO
+					break;
+				case "6":
 					System.out.println("Merci, au revoir !");
 					break;
 				default:
