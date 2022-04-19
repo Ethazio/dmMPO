@@ -33,8 +33,13 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 		this.ingredients.add(i);
 	}
 	
-	public void deplacerIngredient(Ingredient i, Sandwich s) {
-		// TODO
+	public void deplacerIngredient(Ingredient i, Sandwich s) throws alimentNonCompatibleException {
+		if(!(i instanceof IPain) && !(i instanceof ISauce) && this.ingredients.contains(i)) {
+			s.composer(i);
+			ingredients.remove(i);
+		} else {
+			throw new alimentNonCompatibleException();
+		}
 	}
 	
 	public <X extends IAliment, Y extends IAliment, Z extends IAliment> boolean ingredientCommun(Sandwich<X,Y,Z> s) {
