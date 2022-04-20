@@ -1,7 +1,13 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
-public class Sandwich <P extends IAliment, S extends IAliment, I extends IAliment> {
+public class Sandwich <P extends IAliment, S extends IAliment, I extends IAliment> implements Iterable<Ingredient> {
 	private String nom;
 	private Ingredient<P> pain;
 	private Ingredient<S> sauce;
@@ -59,7 +65,7 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 		return false;
 	}
 	
-	public IAliment getIngredientPlusCaloriquePour100g() {
+	public IAliment getIngredientPlusCalorique() {
 		IAliment res = this.pain.getAliment();
 		if(res.getKilocaloriesPour100g() < this.sauce.getAliment().getKilocaloriesPour100g()) {
 			res = this.sauce.getAliment();
@@ -72,6 +78,23 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 		return res;
 	}
 	
+	public IAliment getIngredientPlusCaloriqueV2() {
+		IAliment res = new Aliment(null);
+		Iterator<Ingredient> it = this.iterator() ;
+		Ingredient<IAliment> ing;
+		while (it.hasNext()) {
+			ing = it.next();
+			if(res.getKilocaloriesPour100g() < ing.getAliment().getKilocaloriesPour100g()) {
+				res = ing.getAliment();
+			}
+		}
+		return res;
+	}
+	
+	public IAliment getIngredientPlusCaloriqueV3() {
+		return (IAliment) this.stream().max((x, y) -> Float.compare(((IAliment) x.getAliment()).getKilocaloriesPour100g(), ((IAliment) y.getAliment()).getKilocaloriesPour100g())).get().getAliment();
+	}
+	
 	public String toString() {
 		String res = "Sandwich '" + this.nom + "' :\n  - " + this.pain + "\n  - " + this.sauce;
 		if(this.ingredients != null) {
@@ -80,5 +103,14 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 			}
 		}
 		return res;
+	}
+
+	@Override
+	public Iterator<Ingredient> iterator() {
+		return new SandwichIterator(this);
+	}
+	
+	public Stream<Ingredient> stream() {
+		return StreamSupport.stream(Spliterators.spliteratorUnknownSize(this.iterator(),Spliterator.ORDERED), false);
 	}
 }
