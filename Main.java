@@ -505,7 +505,7 @@ public class Main {
 						System.out.println("Voici vos sandwich :");
 						for(Sandwich sand: sandwichs) {
 							System.out.println(sand);
-							System.out.println("  > Ingrédient le plus calorique : " + sand.getIngredientPlusCaloriqueV2() + " avec " + sand.getIngredientPlusCalorique().getKilocaloriesPour100g() + " kcal/100g");
+							System.out.println("  > Ingrédient le plus calorique : " + sand.getIngredientPlusCaloriqueV3() + " avec " + sand.getIngredientPlusCalorique().getKilocaloriesPour100g() + " kcal/100g");
 						}
 					}
 					break;
