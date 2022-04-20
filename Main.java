@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 // Source pour les valeurs caloriques : https://www.infocalories.fr/
@@ -95,9 +96,15 @@ public class Main {
 		
 		System.out.println(s);
 		System.out.println(s2);
+		
+		System.out.println("-V1-");
+		System.out.println(s2.getIngredientPlusCalorique());
+		System.out.println("-V2-");
+		System.out.println(s2.getIngredientPlusCaloriqueV2());
+		System.out.println("-V3-");
+		System.out.println(s2.getIngredientPlusCaloriqueV3());
 		*/
 		
-	
 		// CREATION DES PAINS
 		IPain painBlanc = new Pain("blanc");
 		try {
@@ -498,7 +505,7 @@ public class Main {
 						System.out.println("Voici vos sandwich :");
 						for(Sandwich sand: sandwichs) {
 							System.out.println(sand);
-							System.out.println("  > Ingrédient le plus calorique : " + sand.getIngredientPlusCaloriquePour100g() + " avec " + sand.getIngredientPlusCaloriquePour100g().getKilocaloriesPour100g() + " kcal/100g");
+							System.out.println("  > Ingrédient le plus calorique : " + sand.getIngredientPlusCaloriqueV2() + " avec " + sand.getIngredientPlusCalorique().getKilocaloriesPour100g() + " kcal/100g");
 						}
 					}
 					break;
