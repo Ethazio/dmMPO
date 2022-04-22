@@ -7,6 +7,9 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main1() {
+
+		//---- Création des aliments ----//
+		
 		IPain painBlanc = new Pain("blanc");
 		try {
 			painBlanc.setKilocaloriesPour100g(216.0f);
@@ -37,28 +40,28 @@ public class Main {
 			System.out.println("Le nombre de kilocalories pour 100g doit être compris entre 0 et 1000");
 		}
 
-		IAliment steakBoeuf = new Aliment("steak boeuf");
+		IAliment steakBoeuf = new Viande("steak boeuf");
 		try {
 			steakBoeuf.setKilocaloriesPour100g(211.0f);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("Le nombre de kilocalories pour 100g doit être compris entre 0 et 1000");
 		}
 
-		IAliment steakSoja = new Aliment("steak soja");
+		IAlimentVegan steakSoja = new AlimentVegan("steak soja");
 		try {
 			steakSoja.setKilocaloriesPour100g(177.0f);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("Le nombre de kilocalories pour 100g doit être compris entre 0 et 1000");
 		}
 
-		IAlimentVegan tomate = new AlimentVegan("tomate");
+		IAlimentVegan tomate = new Legume("tomate");
 		try {
 			tomate.setKilocaloriesPour100g(21.0f);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("Le nombre de kilocalories pour 100g doit être compris entre 0 et 1000");
 		}
 
-		IAlimentVegan salade = new AlimentVegan("salade");
+		IAlimentVegan salade = new Legume("salade");
 		try {
 			salade.setKilocaloriesPour100g(13.0f);
 		} catch (nbKcalInvalideException e1) {
@@ -72,21 +75,21 @@ public class Main {
 			System.out.println("Le nombre de kilocalories pour 100g doit être compris entre 0 et 1000");
 		}
 
-		IAlimentVegetarien avocat = new AlimentVegetarien("avocat");
+		IAlimentVegan avocat = new Legume("avocat");
 		try {
 			avocat.setKilocaloriesPour100g(360.0f);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("Le nombre de kilocalories pour 100g doit être compris entre 0 et 1000");
 		}
 
-		IAlimentVegetarien cheddar = new AlimentVegetarien("cheddar");
+		IAlimentVegetarien cheddar = new ProduitLaitier("cheddar");
 		try {
 			cheddar.setKilocaloriesPour100g(402.0f);
 		} catch (nbKcalInvalideException e1) {
 			System.out.println("Le nombre de kilocalories pour 100g doit être compris entre 0 et 1000");
 		}
 
-		// Sandwich n°1
+		//---- Sandwich n°1 ----//
 
 		Ingredient<IPain> tranchePainComplet = new Ingredient<>();
 		tranchePainComplet.setAliment(painComplet);
@@ -96,20 +99,19 @@ public class Main {
 		doseSauceKetchup.setAliment(sauceKetchup);
 		doseSauceKetchup.setQuantiteEnGramme(30.0f);
 
-		Ingredient<IAliment> partSteakBoeuf = new Ingredient<IAliment>();
+		Ingredient<IAliment> partSteakBoeuf = new Ingredient<>();
 		partSteakBoeuf.setAliment(steakBoeuf);
 		partSteakBoeuf.setQuantiteEnGramme(200.0f);
 
-		Ingredient<IAliment> trancheTomate = new Ingredient<IAliment>();
+		Ingredient<IAlimentVegan> trancheTomate = new Ingredient<>();
 		trancheTomate.setAliment(tomate);
 		trancheTomate.setQuantiteEnGramme(200.0f);
 
-		Ingredient<IAliment> feuilleSalade = new Ingredient<IAliment>();
+		Ingredient<IAlimentVegan> feuilleSalade = new Ingredient<>();
 		feuilleSalade.setAliment(salade);
 		feuilleSalade.setQuantiteEnGramme(200.0f);
 
-		Sandwich<IPain, ISauce, IAliment> sandwich = new Sandwich<>("Mon Sandwich préféré", tranchePainComplet,
-				doseSauceKetchup);
+		Sandwich<IPain, ISauce, IAliment> sandwich = new Sandwich<>("Mon Sandwich préféré", tranchePainComplet, doseSauceKetchup);
 		try {
 			sandwich.composer(partSteakBoeuf);
 			sandwich.composer(trancheTomate);
@@ -119,7 +121,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		// Sandwich n°2
+		//---- Sandwich n°2 ----//
 
 		Ingredient<IPain> tranchePainBlanc = new Ingredient<>();
 		tranchePainBlanc.setAliment(painBlanc);
@@ -129,21 +131,19 @@ public class Main {
 		doseSauceMayonnaise.setAliment(sauceMayonnaise);
 		doseSauceMayonnaise.setQuantiteEnGramme(30.0f);
 
-		Ingredient<IAliment> oeufDur = new Ingredient<IAliment>();
+		Ingredient<IAlimentVegetarien> oeufDur = new Ingredient<>();
 		oeufDur.setAliment(oeuf);
 		oeufDur.setQuantiteEnGramme(200.0f);
 
-		Ingredient<IAliment> feuilleSalade2 = new Ingredient<IAliment>();
+		Ingredient<IAlimentVegan> feuilleSalade2 = new Ingredient<>();
 		feuilleSalade2.setAliment(salade);
 		feuilleSalade2.setQuantiteEnGramme(200.0f);
 
-		Ingredient<IAliment> trancheCheddar = new Ingredient<IAliment>();
-		trancheCheddar.setAliment(avocat);
+		Ingredient<IAlimentVegetarien> trancheCheddar = new Ingredient<>();
+		trancheCheddar.setAliment(cheddar);
 		trancheCheddar.setQuantiteEnGramme(200.0f);
 
-		SandwichVegetarien<IPain, ISauce, IAliment> sandwichVegetarien = new SandwichVegetarien<>(
-				"Mon Sandwich végétarien",
-				tranchePainBlanc, doseSauceMayonnaise);
+		SandwichVegetarien<IPain, ISauce, IAlimentVegetarien> sandwichVegetarien = new SandwichVegetarien<>("Mon Sandwich végétarien", tranchePainBlanc, doseSauceMayonnaise);
 		try {
 			sandwichVegetarien.composer(oeufDur);
 			sandwichVegetarien.composer(feuilleSalade);
@@ -153,7 +153,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		// Sandwich n°3
+		//---- Sandwich n°3 ----//
 
 		Ingredient<IPain> tranchePainComplet2 = new Ingredient<>();
 		tranchePainComplet2.setAliment(painComplet);
@@ -163,21 +163,19 @@ public class Main {
 		doseSauceKetchup2.setAliment(sauceKetchup);
 		doseSauceKetchup2.setQuantiteEnGramme(30.0f);
 
-		Ingredient<IAliment> partSteakSoja = new Ingredient<IAliment>();
-		partSteakSoja.setAliment(steakBoeuf);
+		Ingredient<IAlimentVegan> partSteakSoja = new Ingredient<>();
+		partSteakSoja.setAliment(steakSoja);
 		partSteakSoja.setQuantiteEnGramme(200.0f);
 
-		Ingredient<IAliment> morceauAvocat = new Ingredient<IAliment>();
+		Ingredient<IAlimentVegan> morceauAvocat = new Ingredient<>();
 		morceauAvocat.setAliment(avocat);
 		morceauAvocat.setQuantiteEnGramme(200.0f);
 
-		Ingredient<IAliment> trancheTomate2 = new Ingredient<IAliment>();
+		Ingredient<IAlimentVegan> trancheTomate2 = new Ingredient<>();
 		trancheTomate2.setAliment(tomate);
 		trancheTomate2.setQuantiteEnGramme(200.0f);
 
-		SandwichVegan<IPain, ISauce, IAliment> sandwichVegan = new SandwichVegan<>("Mon Sandwich vegan",
-				tranchePainComplet,
-				doseSauceKetchup);
+		SandwichVegan<IPain, ISauce, IAlimentVegan> sandwichVegan = new SandwichVegan<>("Mon Sandwich vegan", tranchePainComplet, doseSauceKetchup);
 		try {
 			sandwichVegan.composer(partSteakSoja);
 			sandwichVegan.composer(morceauAvocat);
@@ -187,27 +185,60 @@ public class Main {
 			e.printStackTrace();
 		}
 
+		System.out.println("Liste des sandwichs :");
 		System.out.println(sandwich);
 		System.out.println(sandwichVegetarien);
 		System.out.println(sandwichVegan);
 
-		// Affichage de l'ingrédient le plus calorique pour chacun des sandwichs
-
+		//---- Affichage de l'ingrédient le plus calorique pour chacun des sandwichs ----//
+		
+		System.out.println("Ingrédient le plus calorique :");
 		System.out.println(sandwich.getIngredientPlusCaloriqueV3());
 		System.out.println(sandwichVegetarien.getIngredientPlusCaloriqueV3());
 		System.out.println(sandwichVegan.getIngredientPlusCaloriqueV3());
 
-		// Deplacement d'un ingrédient du sandwich vegan vers le sandwich vegetarien
+		//---- Deplacement d'un ingrédient du sandwich vegan vers le sandwich vegetarien ----//
 
 		try {
+			System.out.println("Déplacement d'un ingrédient");
+			System.out.println("Avant :");
+			System.out.println(sandwichVegan);
+			System.out.println(sandwichVegetarien);
 			sandwichVegan.deplacerIngredient(morceauAvocat, sandwichVegetarien);
+			System.out.println("Après :");
+			System.out.println(sandwichVegan);
+			System.out.println(sandwichVegetarien);
 		} catch (alimentNonCompatibleException e) {
-			System.out.println("NOPE");
+			System.out.println("Régime alimentaire incompatible !");
 		}
 
-		// Méthode ingrédient commun
-
+		//---- Méthode ingrédient commun ----//
+		
+		System.out.println("Ingrédient commun ?");
 		System.out.println(sandwich.ingredientCommun(sandwichVegan));
+		
+		
+		//---- Instructions provoquant des erreurs ----//
+		
+		// Ajout de boeuf dans un sandwich vegan :
+		sandwichVegan.composer(partSteakBoeuf);
+		
+		// Ajout de pain en plus dans un sandwich :
+		sandwich.composer(tranchePainBlanc);
+		
+		// Création d'un sandwich avec une sauce au lieu du pain :
+		Sandwich<IPain, ISauce, IAliment> sandwichSauceAuLieuDePain = new Sandwich<>("sandwichSauceAuLieuDePain", doseSauceMayonnaise, doseSauceKetchup);
+
+		// Déplacement de boeuf dans un sandwich vegan :
+		sandwich.deplacerIngredient(partSteakBoeuf, sandwichVegan);
+		
+		// Création d'un aliment ayant 0 Kcal
+		IAliment eau = new Aliment("eau");
+		eau.setKilocaloriesPour100g(0.0f);
+		
+		// Création d'un aliment ayant plus de 1000 Kcal
+		IAliment uranium = new Aliment("uranium 235");
+		uranium.setKilocaloriesPour100g(999999.9f);
 	}
 
 	public static void main2() throws nbKcalInvalideException {
@@ -639,5 +670,6 @@ public class Main {
 			default:
 				System.out.println("Choix inexistant !");
 		}
+		scan.close();
 	}
 }
