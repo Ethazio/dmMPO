@@ -65,7 +65,21 @@
 
 \section{Choix de modélisation}
 
-\emph{TODO}
+% Classe ingredient
+% Methode composer et constructeur
+% Pain et Sauce à part des aliments classiques
+% source : infocalories.fr
+
+  Nous avons dû faire certains choix de modélisation que nous allons détailler. Premièrement, nous sommes parti du principe qu'un \emph{Sandwich} comporte \textbf{obligatoirement} un \emph{Pain} et une \emph{Sauce}. C'est pour cela que nous les avons mis dans le constructeur. Par conséquent, nous avons choisi que nos classes Pain et Sauce soient indépendantes des autres aliments, ce qui facilite la compréhension de la généricité du sandwich.
+
+  Deuxièmement, nous avons fait le choix de distinguer les aliments des ingrédients : un \emph{Aliment} représente un aliment de la vie de tous les jours, comme une tomate, un oeuf... là où un \emph{Ingredient} représente une quantité d'un certain aliment utilisé pour composer un sandwhich, par exemple une tranche de tomate de 34 grammes. Un même Aliment est utilisé à chaque fois que l'on veut en utiliser comme Ingrédient. C'est pourquoi sur notre modèle UML, nous avons décidé de modéliser cela comme une classe d'association.
+
+  La méthode \emph{composer()} permet d'ajouter un aliment au sandwich, en vérifiant si le régime du sandwich le permet, et, le cas contraire, retourne une exception. Ce choix est appuyé par notre expérience client dans la chaine de restauration de sandwichs <<Subway>> : en effet, lorsque nous composons nos sandwichs, nous le faisons ingrédient par ingrédient, et non tout d'un coup.
+
+  De plus, nous n'avons pas inventé les données concernant les ingrédients : nous avons cherché leur valeur calorique sur le site \href{https://www.infocalories.fr/}{\underline{infocalories.fr}} ainsi que leur quantité dans la documentation de l'enseigne <<Subway>>.
+
+  Afin de reproduire une expérience client dans notre restaurant factice numérique, nous avons développé un autre programme contenu dans la méthode \emph{main2()} que vous pouvez essayer et profiter d'une interface pour créer, voir, manger et tester les différentes méthodes sur des sandwichs.
+
 % Expliquer les différents choix que l'on a pris (ex. quantifier les IAliment avec Ingrédient...)
 
 
