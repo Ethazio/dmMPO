@@ -2,7 +2,7 @@
 public class Sauce implements ISauce {
 	private String nom;
 	private Piquant niveauPiquant;
-	private float kilocaloriesPour100g; // Dépend de la sauce choisie
+	private float kilocaloriesPour100g;
 	
 	public Sauce(String nom) {
 		this.nom = nom;
