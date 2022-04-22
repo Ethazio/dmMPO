@@ -7,7 +7,7 @@ import java.util.Spliterators;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class Sandwich <P extends IAliment, S extends IAliment, I extends IAliment> implements Iterable<Ingredient> {
+public class Sandwich <P extends IPain, S extends ISauce, I extends IAliment> implements Iterable<Ingredient> {
 	private String nom;
 	private Ingredient<P> pain;
 	private Ingredient<S> sauce;
@@ -48,7 +48,7 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 		}
 	}
 	
-	public <X extends IAliment, Y extends IAliment, Z extends IAliment> boolean ingredientCommun(Sandwich<X,Y,Z> s) {
+	public <X extends IPain, Y extends ISauce, Z extends IAliment> boolean ingredientCommun(Sandwich<X,Y,Z> s) {
 		if(s.getPain().getAliment().equals(this.getPain().getAliment())) {
 			return true;
 		}
@@ -64,7 +64,7 @@ public class Sandwich <P extends IAliment, S extends IAliment, I extends IAlimen
 		}
 		return false;
 	}
-	
+
 	public IAliment getIngredientPlusCalorique() {
 		IAliment res = this.pain.getAliment();
 		if(res.getKilocaloriesPour100g() < this.sauce.getAliment().getKilocaloriesPour100g()) {
