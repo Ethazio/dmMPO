@@ -1,7 +1,7 @@
 
 public class Pain implements IPain {
 	private String nom;
-	private float kilocaloriesPour100g; // Dépend du pain choisi
+	private float kilocaloriesPour100g;
 	
 	public Pain(String nom) {
 		this.nom = nom;
