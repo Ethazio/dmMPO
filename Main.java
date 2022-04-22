@@ -5,9 +5,8 @@ import java.util.Scanner;
 // Source pour les valeurs caloriques : https://www.infocalories.fr/
 
 public class Main {
-
-	public static void main(String[] args) {
-		/*
+	
+	public static void main1() {
 		IPain painBlanc = new Pain("blanc");
 		try {
 			painBlanc.setKilocaloriesPour100g(216.0f);
@@ -103,155 +102,76 @@ public class Main {
 		System.out.println(s2.getIngredientPlusCaloriqueV2());
 		System.out.println("-V3-");
 		System.out.println(s2.getIngredientPlusCaloriqueV3());
-		*/
-		
+	}
+	
+	public static void main2() throws nbKcalInvalideException {
 		// CREATION DES PAINS
 		IPain painBlanc = new Pain("blanc");
-		try {
-			painBlanc.setKilocaloriesPour100g(216.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		painBlanc.setKilocaloriesPour100g(216.0f);
 		
 		IPain painComplet = new Pain("complet");
-		try {
-			painComplet.setKilocaloriesPour100g(189.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		painComplet.setKilocaloriesPour100g(189.0f);
 		
 		IPain painItalien = new Pain("italien");
-		try {
-			painItalien.setKilocaloriesPour100g(200.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		painItalien.setKilocaloriesPour100g(200.0f);
 		
 		
 		// CREATION DES SAUCES
 		ISauce sauceKetchup = new Sauce("ketchup");
-		try {
-			sauceKetchup.setKilocaloriesPour100g(112.0f);
-			sauceKetchup.setNiveauPiquant(Piquant.TRES_DOUX);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		sauceKetchup.setKilocaloriesPour100g(112.0f);
+		sauceKetchup.setNiveauPiquant(Piquant.TRES_DOUX);
 		
 		ISauce sauceMayo = new Sauce("mayo");
-		try {
-			sauceMayo.setKilocaloriesPour100g(687.0f);
-			sauceMayo.setNiveauPiquant(Piquant.TRES_DOUX);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		sauceMayo.setKilocaloriesPour100g(687.0f);
+		sauceMayo.setNiveauPiquant(Piquant.TRES_DOUX);
 		
 		ISauce sauceMoutarde = new Sauce("moutarde");
-		try {
-			sauceMoutarde.setKilocaloriesPour100g(155.0f);
-			sauceMoutarde.setNiveauPiquant(Piquant.DOUX);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		sauceMoutarde.setKilocaloriesPour100g(155.0f);
+		sauceMoutarde.setNiveauPiquant(Piquant.DOUX);
 		
 		
 		// CREATION DES INGREDIENTS
-		IAlimentVegan tomate = new AlimentVegan("tomate");
-		try {
-			tomate.setKilocaloriesPour100g(21.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAlimentVegan tomate = new Legume("tomate");
+		tomate.setKilocaloriesPour100g(21.0f);
 		
-		IAlimentVegan salade = new AlimentVegan("salade");
-		try {
-			salade.setKilocaloriesPour100g(13.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAlimentVegan salade = new Legume("salade");
+		salade.setKilocaloriesPour100g(13.0f);
 		
-		IAliment bacon = new Aliment("bacon");
-		try {
-			bacon.setKilocaloriesPour100g(541.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAliment bacon = new Viande("bacon");
+		bacon.setKilocaloriesPour100g(541.0f);
 		
-		IAlimentVegan concombre = new AlimentVegan("concombre");
-		try {
-			concombre.setKilocaloriesPour100g(10.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAlimentVegan concombre = new Legume("concombre");
+		concombre.setKilocaloriesPour100g(10.0f);
 		
 		IAlimentVegetarien oeuf = new AlimentVegetarien("oeuf");
-		try {
-			oeuf.setKilocaloriesPour100g(73.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		oeuf.setKilocaloriesPour100g(73.0f);
+
+		IAlimentVegan oignon = new Legume("oignon");
+		oignon.setKilocaloriesPour100g(43.0f);
 		
-		IAlimentVegan oignon = new AlimentVegan("oignon");
-		try {
-			oignon.setKilocaloriesPour100g(43.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
-		
-		IAliment steakBoeuf = new Aliment("steak boeuf");
-		try {
-			steakBoeuf.setKilocaloriesPour100g(211.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAliment steakBoeuf = new Viande("steak boeuf");
+		steakBoeuf.setKilocaloriesPour100g(211.0f);
 		
 		IAlimentVegan steakSoja = new AlimentVegan("steak soja");
-		try {
-			steakSoja.setKilocaloriesPour100g(177.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		steakSoja.setKilocaloriesPour100g(177.0f);
 		
-		IAliment poulet = new Aliment("poulet");
-		try {
-			poulet.setKilocaloriesPour100g(102.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAliment poulet = new Viande("poulet");
+		poulet.setKilocaloriesPour100g(102.0f);
 		
-		IAlimentVegan avocat = new AlimentVegan("avocat");
-		try {
-			avocat.setKilocaloriesPour100g(360.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAlimentVegan avocat = new Legume("avocat");
+		avocat.setKilocaloriesPour100g(360.0f);
 		
 		IAlimentVegan tofu = new AlimentVegan("tofu");
-		try {
-			tofu.setKilocaloriesPour100g(76.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		tofu.setKilocaloriesPour100g(76.0f);
+
+		IAliment thon = new Viande("thon");
+		thon.setKilocaloriesPour100g(117.0f);
 		
-		IAliment thon = new Aliment("thon");
-		try {
-			thon.setKilocaloriesPour100g(117.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAlimentVegetarien cheddar = new ProduitLaitier("cheddar");
+		cheddar.setKilocaloriesPour100g(402.0f);
 		
-		IAlimentVegetarien cheddar = new AlimentVegetarien("cheddar");
-		try {
-			cheddar.setKilocaloriesPour100g(402.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
-		
-		IAlimentVegetarien feta = new AlimentVegetarien("feta");
-		try {
-			feta.setKilocaloriesPour100g(264.0f);
-		} catch (nbKcalInvalideException e1) {
-			System.out.println("frerot t'abuses");
-		}
+		IAlimentVegetarien feta = new ProduitLaitier("feta");
+		feta.setKilocaloriesPour100g(264.0f);
 		
 		
 		// DEBUT DU PROGRAMME
@@ -362,6 +282,7 @@ public class Main {
 							break;
 					}
 					
+					// CREATION INSTANCE
 					Sandwich s;
 					switch(regime) {
 						case "non":
@@ -484,9 +405,10 @@ public class Main {
 						}
 					} while(!nomIngr.equals("ok"));
 					
-					// CREATION SANDWICH
+					// RECAPITULATIF
 					System.out.println("Récapitulatif de votre commande :");
 					System.out.println(s);
+					System.out.println("  > Ingrédient le plus calorique : " + s.getIngredientPlusCaloriqueV3() + " avec " + s.getIngredientPlusCalorique().getKilocaloriesPour100g() + " kcal/100g");
 					System.out.println("C'est bon pour vous ?");
 					System.out.println("[1] Oui");
 					System.out.println("[2] Non");
@@ -510,8 +432,11 @@ public class Main {
 					}
 					break;
 				case "3":
-					System.out.println("Entrez l'index du sandwich que vous voulez manger :");
-					int index = scan.nextInt();
+					System.out.println("Choisissez le sandwich que vous voulez manger :");
+					for(int i=0; i<sandwichs.size(); i++) {
+						System.out.println("[" + ((int)i+1) + "] Sandwich '" + sandwichs.get(i).getNom() + "'");
+					}
+					int index = scan.nextInt()-1;
 					if(index >= sandwichs.size()) {
 						System.out.println("Index invalide !");
 					} else {
@@ -520,14 +445,20 @@ public class Main {
 					}
 					break;
 				case "4":
-					System.out.println("Entrez l'index du sandwich A :");
-					int indexA = scan.nextInt();
+					System.out.println("Choisissez le sandwich A :");
+					for(int i=0; i<sandwichs.size(); i++) {
+						System.out.println("[" + ((int)i+1) + "] Sandwich '" + sandwichs.get(i).getNom() + "'");
+					}
+					int indexA = scan.nextInt()-1;
 					if(indexA >= sandwichs.size()) {
 						System.out.println("Index invalide !");
 						break;
 					}
-					System.out.println("Entrez l'index du sandwich B :");
-					int indexB = scan.nextInt();
+					System.out.println("Choisissez le sandwich B :");
+					for(int i=0; i<sandwichs.size(); i++) {
+						System.out.println("[" + ((int)i+1) + "] Sandwich '" + sandwichs.get(i).getNom() + "'");
+					}
+					int indexB = scan.nextInt()-1;
 					if(indexB >= sandwichs.size()) {
 						System.out.println("Index invalide !");
 						break;
@@ -539,23 +470,29 @@ public class Main {
 					}
 					break;
 				case "5":
-					System.out.println("Entrez l'index du sandwich duquel enlever l'ingrédient :");
-					int index1 = scan.nextInt();
+					System.out.println("Choisissez le sandwich duquel enlever l'ingrédient :");
+					for(int i=0; i<sandwichs.size(); i++) {
+						System.out.println("[" + ((int)i+1) + "] Sandwich '" + sandwichs.get(i).getNom() + "'");
+					}
+					int index1 = scan.nextInt()-1;
 					if(index1 >= sandwichs.size()) {
 						System.out.println("Index invalide !");
 						break;
 					}
-					System.out.println("Entrez l'index du sandwich auquel ajouter l'ingrédient :");
-					int index2 = scan.nextInt();
+					System.out.println("Choisissez le sandwich auquel ajouter l'ingrédient :");
+					for(int i=0; i<sandwichs.size(); i++) {
+						System.out.println("[" + ((int)i+1) + "] Sandwich '" + sandwichs.get(i).getNom() + "'");
+					}
+					int index2 = scan.nextInt()-1;
 					if(index2 >= sandwichs.size()) {
 						System.out.println("Index invalide !");
 						break;
 					}
 					System.out.println("Choisissez un ingrédient à déplacer :");
 					for(int i=0; i<sandwichs.get(index1).getIngredients().size(); i++) {
-						System.out.println("[" + i + "] " + sandwichs.get(index1).getIngredients().get(i));
+						System.out.println("[" + ((int)i+1) + "] " + sandwichs.get(index1).getIngredients().get(i));
 					}
-					int ingrId = scan.nextInt();
+					int ingrId = scan.nextInt()-1;
 					if(ingrId >= sandwichs.get(index1).getIngredients().size()) {
 						System.out.println("Index invalide !");
 						break;
@@ -576,5 +513,25 @@ public class Main {
 			}
 		} while(!choix.equals("6"));
 		scan.close();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("Tapez 1 pour le programme de test, et 2 pour la simulation de restaurant :");
+		Scanner scan = new Scanner(System.in);
+		int choix = scan.nextInt();
+		switch(choix) {
+			case 1:
+				main1();
+				break;
+			case 2:
+				try {
+					main2();
+				} catch (nbKcalInvalideException e) {
+					System.out.println("Une erreur est survenue !");
+				}
+				break;
+			default:
+				System.out.println("Choix inexistant !");
+		}
 	}
 }
