@@ -1,5 +1,5 @@
 
-public class SandwichVegan<P extends IAliment, S extends IAliment, I extends IAliment> extends SandwichVegetarien<P, S, I> {
+public class SandwichVegan<P extends IPain, S extends ISauce, I extends IAliment> extends SandwichVegetarien<P, S, I> {
 	
 	public SandwichVegan(String nom, Ingredient<P> pain, Ingredient<S> sauce) {
 		super(nom, pain, sauce);
